@@ -34,7 +34,10 @@ public class LoginServlet extends HttpServlet {
 		String userName = req.getParameter("username");
 		  String password  = req.getParameter("password");
 		  if(userName.equals("Arnav")&&password.equals("weakPass")){
-			  System.out.println("correct password");
+			  
+		  }else{
+			  req.setAttribute("error","wrong password");
+			  req.getRequestDispatcher("/index.jsp").forward(req, resp);
 		  }
 	}
 }
