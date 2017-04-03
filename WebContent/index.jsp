@@ -24,30 +24,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-static-top white "
-		data-spy="affix" role="navigation" style="margin:0px;">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#"><b><span
-					style="color: #9dd695">HOMAS Home</b>
-		</div>
-		<ul class="nav navbar-nav navbar-right">
-			<!-- <li><a href="#edus">Education</a></li>
-		<li><a href="#exps">Experience</a></li>
-		<li><a href="#pros">Projects</a></li> -->
-			<li><a href="mailto:arnavbhartiya@ufl.edu">Contact us</a>
-			<li><a href="#signIn">Sign in</a>
-			<li><a href="#signIn">Sign up</a>
-		</ul>
-	</div>
-	</nav>
+	<jsp:include page="Header.jsp" />
 	<div class="jumbotron">
 		<h1 style="text-align: center">Welcome to HOMAS!</h1>
 		<p style="text-align: center">
@@ -59,45 +36,47 @@
 				role="button">Sign In</a>
 		</p>
 	</div>
-		<div class="panel panel-primary panels"
-			style="margin-left: 20px; width: 30%;display: inline-block"">
-			<div class="input-group" style="width: 80%; margin-left: 10%">
-				<!-- <span class="input-group-addon" id="basic-addon1" ></span> -->
-				<h3 style="text-align: center;">Customer login</h3>
-				<form method="post" action="login">
-					<p>Username</p>
-					<input type="text" class="form-control"
-						placeholder="Enter your Username" aria-describedby="basic-addon1"
-						name="username">
-					<p>Password</p>
-					<input type="text" class="form-control"
-						placeholder="Enter your Password" aria-describedby="basic-addon1"
-						name="password"> <input type="submit"
-						class="btn btn-default"
-						style="margin-top: 8px; margin-bottom: 8px" name="submit"
-						value="Sign In" /> <span class="error" style="color: red">${error}</span>
-				</form>
-			</div>
+	<div class="panel panel-primary panels"
+		style="margin-left: 20px; width: 30%; display: inline-block"">
+		<div class="input-group" style="width: 80%; margin-left: 10%">
+			<!-- <span class="input-group-addon" id="basic-addon1" ></span> -->
+			<h3 style="text-align: center;">Customer login</h3>
+			<form method="post" action="login">
+				<p>Username</p>
+				<input type="text" class="form-control"
+					placeholder="Enter your Username" aria-describedby="basic-addon1"
+					name="username">
+				<p>Password</p>
+				<input type="text" class="form-control"
+					placeholder="Enter your Password" aria-describedby="basic-addon1"
+					name="password"> <input type="submit"
+					class="btn btn-default" style="margin-top: 8px; margin-bottom: 8px"
+					name="submit" value="Sign In" /> <span class="error"
+					style="color: red">${error}</span>
+			</form>
 		</div>
-		<div class="panel panel-primary panels"
-			style="margin-left: 20px;display: inline-block; width: 30%">
-			<div class="input-group" style="width: 80%; margin-left: 10%">
-				<!-- <span class="input-group-addon" id="basic-addon1" ></span> -->
-				<h3 style="text-align: center;">Employee login</h3>
-				<form method="post" action="login">
-					<p>Username</p>
-					<input type="text" class="form-control"
-						placeholder="Enter your Username" aria-describedby="basic-addon1"
-						name="username">
-					<p>Password</p>
-					<input type="text" class="form-control"
-						placeholder="Enter your Password" aria-describedby="basic-addon1"
-						name="password"> <input type="submit"
-						class="btn btn-default"
-						style="margin-top: 8px; margin-bottom: 8px" name="submit"
-						value="Sign In" /> <span class="error" style="color: red">${error}</span>
-				</form>
-			</div>
+	</div>
+	<div class="panel panel-primary panels"
+		style="margin-left: 20px; display: inline-block; width: 30%">
+		<div class="input-group" style="width: 80%; margin-left: 10%">
+			<!-- <span class="input-group-addon" id="basic-addon1" ></span> -->
+			<h3 style="text-align: center;">Employee login</h3>
+			<form method="post" action="login">
+				<p>Username</p>
+				<input type="text" class="form-control"
+					placeholder="Enter your Username" aria-describedby="basic-addon1"
+					name="username">
+				<p>Password</p>
+				<input type="text" class="form-control"
+					placeholder="Enter your Password" aria-describedby="basic-addon1"
+					name="password"> <input type="submit"
+					class="btn btn-default" style="margin-top: 8px; margin-bottom: 8px"
+					name="submit" value="Sign In" /> <span class="error"
+					style="color: red">${error}</span>
+			</form>
 		</div>
+	</div>
+
+
 </body>
 </html>
