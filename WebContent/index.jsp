@@ -28,7 +28,7 @@
 	<div class="jumbotron">
 		<h1 style="text-align: center">Welcome to HOMAS!</h1>
 		<p style="text-align: center">
-			<a class="btn btn-primary btn-lg" href="#signUp" role="button">Sign
+			<a class="btn btn-primary btn-lg" href="/DBMSwebsite/SignUp.jsp" role="button">Sign
 				Up</a>
 		</p>
 		<p style="text-align: center">
@@ -42,11 +42,11 @@
 			<!-- <span class="input-group-addon" id="basic-addon1" ></span> -->
 			<h3 style="text-align: center;">Customer login</h3>
 			<form method="post" action="login">
-				<p>Username</p>
+				<b>Username</b>
 				<input type="text" class="form-control"
 					placeholder="Enter your Username" aria-describedby="basic-addon1"
 					name="username">
-				<p>Password</p>
+				<p><b>Password</b></p>
 				<input type="text" class="form-control"
 					placeholder="Enter your Password" aria-describedby="basic-addon1"
 					name="password"> <input type="submit"
@@ -62,11 +62,11 @@
 			<!-- <span class="input-group-addon" id="basic-addon1" ></span> -->
 			<h3 style="text-align: center;">Employee login</h3>
 			<form method="post" action="login">
-				<p>Username</p>
+				<p><b>Username</b></p>
 				<input type="text" class="form-control"
 					placeholder="Enter your Username" aria-describedby="basic-addon1"
 					name="username">
-				<p>Password</p>
+				<p><b>Password</b></p>
 				<input type="text" class="form-control"
 					placeholder="Enter your Password" aria-describedby="basic-addon1"
 					name="password"> <input type="submit"
@@ -76,7 +76,5 @@
 			</form>
 		</div>
 	</div>
-
-
 </body>
 </html>

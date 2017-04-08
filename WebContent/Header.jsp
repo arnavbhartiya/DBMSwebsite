@@ -45,11 +45,9 @@
 					<input type="text" class="form-control"
 						placeholder="Search Deals!!">
 				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
+				<button type="submit" class="btn btn-default">Search</button>
 			</form>
 			<li><a href="mailto:arnavbhartiya@ufl.edu">Contact us</a>
-			<li><a href="#signIn">Sign in</a>
-			<li><a href="#signIn">Sign up</a>
 		</ul>
 	</div>
 	</nav>
