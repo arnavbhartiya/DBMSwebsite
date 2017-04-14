@@ -51,18 +51,20 @@
 					name="email">
 				<p><b>Gender</b></p>
 				<div class="btn-group" role="group" aria-label="..." style="margin-bottom: 8px">
-					<button type="button" class="btn btn-default">Male</button>
-					<button type="button" class="btn btn-default">Female</button>
+					<button name="male" type="button" class="btn btn-default">Male</button>
+					<button name="female" type="button" class="btn btn-default">Female</button>
 				</div>
 				<div>
 				 <input type="submit"
 					class="btn btn-default" style="margin-top: 8px; margin-bottom: 8px"
 					name="submit" value="Sign Up" />
 				 <span class="error"
-					style="color: red">${error}</span>
+					style="color: red">${signUpError}</span>
 				</div>
 			</form>
 		</div>
 	</div> 
+	<div  style="background-image: url(thanks.png)">
+	</div>
 </body>
 </html>

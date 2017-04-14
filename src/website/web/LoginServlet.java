@@ -45,20 +45,19 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String userName = req.getParameter("username");
+		String pass="93Kanhaiya";
 		String password = req.getParameter("password");
+		String passwordFromDb="";
 		try {
 		    Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection(
 					"jdbc:oracle:thin:hr/hr@oracle1.cise.ufl.edu:1521:orcl",
-					"arnav", "93Kanhaiya");
+					"arnav", pass);
 		    Statement stmt = conn.createStatement ();
-		    ResultSet result = stmt.executeQuery ("select * from USERS");
-		    //System.out.println(result);
-		    //System.out.println (result.getString ("USERNAME").toString());
-		    while (result.next()){
-		    	System.out.println("in while");
-		        System.out.println (result.getString ("USERNAME").toString());
-		        System.out.println (result.getString ("PASSWORD").toString());
+		    ResultSet passwordFromDbResult = stmt.executeQuery ("select PASSWORD from USERS WHERE USERNAME=\'"+userName+"\'");
+		    while (passwordFromDbResult.next()){
+		        passwordFromDb=passwordFromDbResult.getString ("PASSWORD").toString();
+		        System.out.println(passwordFromDb);
 		    }
 		      conn.close(); // ** IMPORTANT : Close connections when done **
 
@@ -70,8 +69,8 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		if (userName.equals("Arnav") && password.equals("weakPass")) {
-
+		if (password.equals(passwordFromDb)) {
+			req.getRequestDispatcher("/CustomerProfile.jsp").forward(req, resp);
 		} else {
 			req.setAttribute("error", "wrong password");
 			req.getRequestDispatcher("/index.jsp").forward(req, resp);

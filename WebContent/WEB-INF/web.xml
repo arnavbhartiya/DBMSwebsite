@@ -20,4 +20,12 @@
    		<servlet-name>SignUpServlet</servlet-name>
    		<url-pattern>/SignUp</url-pattern>
    </servlet-mapping>
+    <servlet>
+      <servlet-name>SearchRoomsServlet</servlet-name>
+      <servlet-class>website.web.SearchRoomsServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+   		<servlet-name>SearchRoomsServlet</servlet-name>
+   		<url-pattern>/SearchRooms</url-pattern>
+   </servlet-mapping>
 </web-app>
