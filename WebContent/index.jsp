@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>HOMAS</title>
+<title>Concierge</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -26,7 +26,7 @@
 <body>
 	<jsp:include page="Header.jsp" />
 	<div class="jumbotron" style="background-image: url(hotel.jpg);">
-		<h1 style="text-align: center;opacity:1;z-index: 1">Welcome to HOMAS!</h1>
+		<h1 style="text-align: center;opacity:1;z-index: 1">Welcome to Concierge!</h1>
 		<p style="text-align: center">
 			<a class="btn btn-primary btn-lg" href="/DBMSwebsite/SignUp.jsp" role="button">Sign
 				Up</a>
@@ -38,7 +38,7 @@
 	</div>
 	<div class="panel panel-primary panels"
 		style="margin-left: 20px; width: 30%;height:270px;  display: inline-block"">
-		<div class="input-group" style="width: 80%; margin-left: 10%;margin-top:4%">
+		<div class="input-group" style="width: 80%; margin-left: 10%;margin-top:4%;text-align: center">
 			<!-- <span class="input-group-addon" id="basic-addon1" ></span> -->
 			<h3 style="text-align: center;">Customer login</h3>
 			<form method="post" action="login">
@@ -47,7 +47,7 @@
 					placeholder="Enter your Username" aria-describedby="basic-addon1"
 					name="username" id="customerUsername">
 				<p><b>Password</b></p>
-				<input type="text" class="form-control"
+				<input type="password" class="form-control"
 					placeholder="Enter your Password" aria-describedby="basic-addon1"
 					name="password"> <input type="submit"
 					class="btn btn-default" style="margin-top: 8px; margin-bottom: 8px"
@@ -59,7 +59,7 @@
 	<div class="panel panel-primary panels"
 		style="margin-left: 12%; width: 46%;height:270px; display: inline-block"">
 		<div class="input-group" style="width: 80%; margin-left: 10%;text-align: center">
-		<h1>Get a Room Dude!!</h1>
+		<h1>Book a Room</h1>
 		<jsp:include page="RoomBooking.jsp"></jsp:include>
 		<form method="post" action="SearchRooms">
 				<b>Check-In Date</b>
@@ -70,14 +70,14 @@
 				<input type = "text" class="form-control" placeholder="Enter number of rooms required" name="numberOfRooms" id = "datepicker-9">
 				<input type="submit"
 					class="btn btn-default" style="margin-top: 8px; margin-bottom: 8px"
-					name="submit" value="Search rooms" /> <span class="error"
-					style="color: red">${error}</span>
+					name="submit" value="Search rooms" /> <p class="error"
+					style="color: red">${checkInError}</p>
 			</form>
 		</div>
 	</div>
 	<div class="panel panel-primary panels"
 		style="margin-left: 20px; width: 30%">
-		<div class="input-group" style="width: 80%; margin-left: 10%">
+		<div class="input-group" style="width: 80%; margin-left: 10%;text-align: center">
 			<!-- <span class="input-group-addon" id="basic-addon1" ></span> -->
 			<h3 style="text-align: center;">Employee login</h3>
 			<form method="post" action="login">

@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String userName = req.getParameter("username");
-		String pass="93Kanhaiya";
+		String pass="DBMSwebsite";
 		String password = req.getParameter("password");
 		String passwordFromDb="";
 		try {

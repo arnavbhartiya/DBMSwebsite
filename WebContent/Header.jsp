@@ -36,7 +36,7 @@
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="/DBMSwebsite/index.jsp"><b><span
-					style="color: #9dd695">HOMAS Home</b>
+					style="color: #9dd695">Concierge Home</b>
 		</div>
 
 		<ul class="nav navbar-nav navbar-right">
