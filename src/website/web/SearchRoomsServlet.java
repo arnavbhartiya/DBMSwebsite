@@ -11,7 +11,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -59,13 +63,14 @@ public class SearchRoomsServlet extends HttpServlet {
 					"jdbc:oracle:thin:hr/hr@oracle1.cise.ufl.edu:1521:orcl",
 					"arnav", "DBMSwebsite");
 			Statement stmt = conn.createStatement();
-			ResultSet searchResultFromDb = stmt
-					.executeQuery("select * from rooms where BOOKED_TILL_DATE<TO_DATE(\'"
-							+ checkInDateString + "\', \'mm/dd/yyyy\')");
-			req.setAttribute("searchRoomsResultset", searchResultFromDb);
+			Map<String, Integer> roomTypeAvailableMap = findRoomsAvailable(
+					stmt, checkInDateString);
+			Map<String, List<String>> fullRoomDetailsMap = fillFullRoomDetails(
+					stmt, roomTypeAvailableMap);
+			conn.close();
+			req.setAttribute("fullRoomDetailsMap", fullRoomDetailsMap);
 			req.getRequestDispatcher("/SearchRooms.jsp").forward(req, resp);
-			
-			
+
 		} catch (java.text.ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,5 +79,49 @@ public class SearchRoomsServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
+	}
+
+	private Map<String, List<String>> fillFullRoomDetails(Statement stmt,
+			Map<String, Integer> roomTypeAvailableMap) throws SQLException {
+		Map<String, List<String>> fullRoomDetailsMap = new HashMap<String, List<String>>();
+		List<String> roomDetails = new ArrayList<String>();
+		for (Map.Entry<String, Integer> entrySet : roomTypeAvailableMap
+				.entrySet()) {
+			ResultSet getRoomDetailsFromDb = stmt
+					.executeQuery("select * from ROOMTYPE where Room_type=\'"
+							+ entrySet.getKey() + "\'");
+			while (getRoomDetailsFromDb.next()) {
+				String roomPrice = getRoomDetailsFromDb.getString("PRICE")
+						.toString();
+				String roomDescription = getRoomDetailsFromDb
+						.getString("ROOM_DESCRIPTION");
+				String roomsAvailable = entrySet.getValue() + "";
+				roomDetails.add(roomPrice);
+				roomDetails.add(roomsAvailable);
+				roomDetails.add(roomDescription);
+			}
+			fullRoomDetailsMap.put(entrySet.getKey(), roomDetails);
+			roomDetails = new ArrayList<>();
+		}
+		return fullRoomDetailsMap;
+	}
+
+	private Map<String, Integer> findRoomsAvailable(Statement stmt,
+			String checkInDateString) throws SQLException {
+		Map<String, Integer> roomTypeAvailableMap = new HashMap<String, Integer>();
+		ResultSet searchResultFromDb = stmt
+				.executeQuery("select * from rooms where BOOKED_TILL_DATE<TO_DATE(\'"
+						+ checkInDateString + "\', \'mm/dd/yyyy\')");
+		while (searchResultFromDb.next()) {
+			String room_type = searchResultFromDb.getString("ROOM_TYPE")
+					.toString();
+			if (!roomTypeAvailableMap.containsKey(room_type)) {
+				roomTypeAvailableMap.put(room_type, 1);
+			} else {
+				roomTypeAvailableMap.put(room_type,
+						roomTypeAvailableMap.get(room_type) + 1);
+			}
+		}
+		return roomTypeAvailableMap;
 	}
 }

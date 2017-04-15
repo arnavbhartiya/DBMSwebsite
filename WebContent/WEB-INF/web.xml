@@ -28,4 +28,12 @@
    		<servlet-name>SearchRoomsServlet</servlet-name>
    		<url-pattern>/SearchRooms</url-pattern>
    </servlet-mapping>
+      <servlet>
+      <servlet-name>BookingServlet</servlet-name>
+      <servlet-class>website.web.BookingServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+   		<servlet-name>BookingServlet</servlet-name>
+   		<url-pattern>/booking</url-pattern>
+   </servlet-mapping>
 </web-app>
