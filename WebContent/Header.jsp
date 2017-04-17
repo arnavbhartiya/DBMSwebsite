@@ -34,19 +34,14 @@
 				<span class="sr-only">Toggle navigation</span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
-			</button>
+			</button>	
 			<a class="navbar-brand" href="/DBMSwebsite/index.jsp"><b><span
 					style="color: #9dd695">Concierge Home</b>
 		</div>
 
 		<ul class="nav navbar-nav navbar-right">
-			<form class="navbar-form" role="search" style="margin-top: -7px;">
-				<div class="form-group">
-					<input type="text" class="form-control"
-						placeholder="Search Deals!!">
-				</div>
-				<button type="submit" class="btn btn-default">Search</button>
-			</form>
+			
+			<li><% request.getSession().getAttribute("username"); %>
 			<li><a href="mailto:arnavbhartiya@ufl.edu">Contact us</a>
 		</ul>
 	</div>

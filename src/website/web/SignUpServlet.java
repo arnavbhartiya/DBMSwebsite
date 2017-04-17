@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author Arnav Bhartiya
@@ -52,6 +53,8 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			  req.setAttribute("signUpError", "Unable to Sign Up! Please Try again");
 				req.getRequestDispatcher("/SignUp.jsp").forward(req, resp);
 		  }else{
+			  HttpSession session= req.getSession();
+				session.setAttribute("username", userName);
 			  req.setAttribute("username", userName);
 			  System.out.println("Sign up successfull!! going to the customer profile page");
 				req.getRequestDispatcher("/CustomerProfile.jsp").forward(req, resp);

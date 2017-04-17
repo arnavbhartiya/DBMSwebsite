@@ -21,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -28,23 +29,21 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
  * @author Arnav Bhartiya Apr 14, 2017
  */
 public class SearchRoomsServlet extends HttpServlet {
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest
-	 * , javax.servlet.http.HttpServletResponse)
-	 */
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String checkInDateString = req.getParameter("checkInDate");
 		String checkOutDateString = req.getParameter("checkOutDate");
 		int numberOfRooms = Integer.parseInt(req.getParameter("numberOfRooms"));
+		HttpSession session = req.getSession();
+		session.setAttribute("numberOfRooms", numberOfRooms);
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		try {
 			Date checkInDate = df.parse(checkInDateString);
 			Date checkOutDate = df.parse(checkOutDateString);
+			session.setAttribute("checkInDateString", checkInDateString);
+			session.setAttribute("checkOutDateString", checkOutDateString);
 			if (checkInDate.after(checkOutDate)) {
 				req.setAttribute("checkInError",
 						"Check In date can't be after Check out date!");
@@ -66,7 +65,7 @@ public class SearchRoomsServlet extends HttpServlet {
 			Map<String, Integer> roomTypeAvailableMap = findRoomsAvailable(
 					stmt, checkInDateString);
 			Map<String, List<String>> fullRoomDetailsMap = fillFullRoomDetails(
-					stmt, roomTypeAvailableMap);
+					stmt, roomTypeAvailableMap, numberOfRooms);
 			conn.close();
 			req.setAttribute("fullRoomDetailsMap", fullRoomDetailsMap);
 			req.getRequestDispatcher("/SearchRooms.jsp").forward(req, resp);
@@ -81,30 +80,7 @@ public class SearchRoomsServlet extends HttpServlet {
 
 	}
 
-	private Map<String, List<String>> fillFullRoomDetails(Statement stmt,
-			Map<String, Integer> roomTypeAvailableMap) throws SQLException {
-		Map<String, List<String>> fullRoomDetailsMap = new HashMap<String, List<String>>();
-		List<String> roomDetails = new ArrayList<String>();
-		for (Map.Entry<String, Integer> entrySet : roomTypeAvailableMap
-				.entrySet()) {
-			ResultSet getRoomDetailsFromDb = stmt
-					.executeQuery("select * from ROOMTYPE where Room_type=\'"
-							+ entrySet.getKey() + "\'");
-			while (getRoomDetailsFromDb.next()) {
-				String roomPrice = getRoomDetailsFromDb.getString("PRICE")
-						.toString();
-				String roomDescription = getRoomDetailsFromDb
-						.getString("ROOM_DESCRIPTION");
-				String roomsAvailable = entrySet.getValue() + "";
-				roomDetails.add(roomPrice);
-				roomDetails.add(roomsAvailable);
-				roomDetails.add(roomDescription);
-			}
-			fullRoomDetailsMap.put(entrySet.getKey(), roomDetails);
-			roomDetails = new ArrayList<>();
-		}
-		return fullRoomDetailsMap;
-	}
+	
 
 	private Map<String, Integer> findRoomsAvailable(Statement stmt,
 			String checkInDateString) throws SQLException {
@@ -123,5 +99,32 @@ public class SearchRoomsServlet extends HttpServlet {
 			}
 		}
 		return roomTypeAvailableMap;
+	}
+	private Map<String, List<String>> fillFullRoomDetails(Statement stmt,
+			Map<String, Integer> roomTypeAvailableMap, int numberOfRooms) throws SQLException {
+		Map<String, List<String>> fullRoomDetailsMap = new HashMap<String, List<String>>();
+		List<String> roomDetails = new ArrayList<String>();
+		for (Map.Entry<String, Integer> entrySet : roomTypeAvailableMap
+				.entrySet()) {
+			if(entrySet.getValue()>=numberOfRooms){
+
+				ResultSet getRoomDetailsFromDb = stmt
+						.executeQuery("select * from ROOMTYPE where Room_type=\'"
+								+ entrySet.getKey() + "\'");
+				while (getRoomDetailsFromDb.next()) {
+					String roomPrice = getRoomDetailsFromDb.getString("PRICE")
+							.toString();
+					String roomDescription = getRoomDetailsFromDb
+							.getString("ROOM_DESCRIPTION");
+					String roomsAvailable = entrySet.getValue() + "";
+					roomDetails.add(roomPrice);
+					roomDetails.add(roomsAvailable);
+					roomDetails.add(roomDescription);
+				}
+				fullRoomDetailsMap.put(entrySet.getKey(), roomDetails);
+				roomDetails = new ArrayList<>();
+			}
+		}
+		return fullRoomDetailsMap;
 	}
 }

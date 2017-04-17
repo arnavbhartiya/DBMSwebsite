@@ -41,13 +41,13 @@
   <b>Price- </b>${entry.value[0]}$<br>
   <b>Rooms Available- </b>${entry.value[1]}<br>
   <form action="booking" method="post">
+  <input type="hidden" value= "${entry.key}" name="roomType">
     <input type="submit"
 					class="btn btn-default" style="margin-top: 8px; margin-bottom: 8px"
 					name="submit" value="Book this" />
   </form>
-
   </div>
-</div>
+ </div>
 	</c:forEach>
 	</div>
 </body>

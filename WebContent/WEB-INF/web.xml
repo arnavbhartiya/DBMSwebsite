@@ -36,4 +36,13 @@
    		<servlet-name>BookingServlet</servlet-name>
    		<url-pattern>/booking</url-pattern>
    </servlet-mapping>
+   <servlet>
+      <servlet-name>BookingConfirmationServlet</servlet-name>
+      <servlet-class>website.web.BookingConfirmationServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+   		<servlet-name>BookingConfirmationServlet</servlet-name>
+   		<url-pattern>/BookingConfirmation</url-pattern>
+   </servlet-mapping>
+   
 </web-app>
