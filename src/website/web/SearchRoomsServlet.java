@@ -38,6 +38,7 @@ public class SearchRoomsServlet extends HttpServlet {
 		int numberOfRooms = Integer.parseInt(req.getParameter("numberOfRooms"));
 		HttpSession session = req.getSession();
 		session.setAttribute("numberOfRooms", numberOfRooms);
+		String username=(String) session.getAttribute("username");
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		try {
 			Date checkInDate = df.parse(checkInDateString);
@@ -67,6 +68,7 @@ public class SearchRoomsServlet extends HttpServlet {
 			Map<String, List<String>> fullRoomDetailsMap = fillFullRoomDetails(
 					stmt, roomTypeAvailableMap, numberOfRooms);
 			conn.close();
+			req.setAttribute("username", username);
 			req.setAttribute("fullRoomDetailsMap", fullRoomDetailsMap);
 			req.getRequestDispatcher("/SearchRooms.jsp").forward(req, resp);
 

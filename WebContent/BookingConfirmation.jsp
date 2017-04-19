@@ -27,28 +27,15 @@
 </head>
 <body>
 	<jsp:include page="Header.jsp" />
-	<div style="margin-left:10%;margin-right: 10% ">
-	<div class="page-header">
-		<h1>
-			Hi ${username}! Rooms available are:
-		</h1>
-	</div>
-	<c:forEach var="entry" items="${fullRoomDetailsMap}">
-	<div class="panel panel-info">
-  <div class="panel-heading"><b> ${entry.key}</b></div>
-  <div class="panel-body">
-  <i>${entry.value[2]}</i><br>
-  <b>Price- </b>${entry.value[0]}$<br>
-  <b>Rooms Available- </b>${entry.value[1]}<br>
-  <form action="booking" method="post">
-  <input type="hidden" value= "${entry.key}" name="roomType">
-    <input type="submit"
-					class="btn btn-default" style="margin-top: 8px; margin-bottom: 8px"
-					name="submit" value="Book this" />
-  </form>
-  </div>
- </div>
-	</c:forEach>
-	</div>
+	<div style="margin-left: 10%; margin-right: 10%; margin-top: 20 px;">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<b>Booking Confirmation</b>
+				</div>
+				<div class="panel-body">
+					Your Booking has been confirmed. To access/ change booking, please login or sign up. Thanks! 
+				</div>
+			</div>
+			</div>
 </body>
 </html>

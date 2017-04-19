@@ -29,7 +29,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 		throws ServletException, IOException {
 	// TODO Auto-generated method stub
 	String firstName = req.getParameter("firstName");
-	String pass="93Kanhaiya";
+	String pass="DBMSwebsite";
 	String lastName = req.getParameter("lastName");
 	String userName = req.getParameter("userName");
 	String password = req.getParameter("password");
@@ -76,11 +76,27 @@ private boolean storeUsersInDatabase(String firstName, String lastName,
 		String userName, String password, String phoneNo, String email,
 		String gender, Connection conn) throws SQLException {
 	Statement stmt = conn.createStatement ();
-	System.out.println("INSERT INTO USERS(USERNAME, PHONE_NO,GENDER, FIRST_NAME, LAST_NAME, EMAIL_ID,PASSWORD) VALUES("+"\'"+userName+"\',"+"\'"+phoneNo+"\',"+"\'"+gender+"\',"+"\'"+firstName+"\',"+"\'"+lastName+"\',"+"\'"+email+"\',"+"\'"+password+"\')");
-    ResultSet store = stmt.executeQuery ("INSERT INTO USERS(USERNAME, PHONE_NO,GENDER, FIRST_NAME, LAST_NAME, EMAIL_ID,PASSWORD) VALUES("+"\'"+userName+"\',"+"\'"+phoneNo+"\',"+"\'"+gender+"\',"+"\'"+firstName+"\',"+"\'"+lastName+"\',"+"\'"+email+"\',"+"\'"+password+"\')");
-    if(store.rowInserted())
+	String contact_query = "INSERT INTO CONTACT_TABLE(CONTACT_ID,FIRSTNAME,LASTNAME,PHONE,EMAIL) VALUES(PAYMENT_SEQUENCE.NEXTVAL,\'"
+			+ firstName
+			+ "\',\'"
+			+ lastName
+			+ "\',\'"
+			+ phoneNo
+			+ "\',\'" + email + "\')";
+	System.out.println(contact_query);
+	stmt.executeQuery(contact_query);
+	System.out.println("select CONTACT_ID FROM CONTACT_TABLE WHERE CONTACT_ID=(select MAX(TO_NUMBER(contact_id)) from contact_table)");
+	ResultSet contactID= stmt.executeQuery("select CONTACT_ID FROM CONTACT_TABLE WHERE CONTACT_ID=(select MAX(TO_NUMBER(contact_id)) from contact_table)");
+	String contact_iD="";
+	while(contactID.next()){
+		contact_iD=contactID.getString("CONTACT_ID");
+	}
+	System.out.println(contact_iD);
+	System.out.println("INSERT INTO USERS(USERNAME,PASSWORD,CONTACT_ID) VALUES("+"\'"+userName+"\',\'"+password+"\',\'"+contact_iD+"\')");
+    ResultSet store = stmt.executeQuery ("INSERT INTO USERS(USERNAME,PASSWORD,CONTACT_ID) VALUES("+"\'"+userName+"\',\'"+password+"\',\'"+contact_iD+"\')");
+    //if(store.rowInserted())
     	return true;
-    return false;
+    //return false;
 }
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)

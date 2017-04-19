@@ -70,9 +70,10 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		if (password.equals(passwordFromDb)) {
+	if (password.equals(passwordFromDb)&&password.length()!=0) {
 			HttpSession session= req.getSession();
 			session.setAttribute("username", userName);
+			req.setAttribute("username", userName);
 			req.getRequestDispatcher("/CustomerProfile.jsp").forward(req, resp);
 		} else {
 			req.setAttribute("error", "wrong password");

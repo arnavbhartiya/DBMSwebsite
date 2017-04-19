@@ -8,11 +8,11 @@
 </head>
 <body>
 	<jsp:include page="Header.jsp" />
+	<h1>Hi ${username}!</h1>
 	<div class="bs-docs-sidebar"
 		style="margin-left: 20px; margin-top: 20px; width: 30%; display: inline-block"">
 		<div class="list-group">
-			<button type="button" class="list-group-item">Booking
-				history</button>
+			<input type="submit" value="BookingHistory" onclick="form.action='BookingHistory';" class="list-group-item">
 			<button type="button" class="list-group-item">Current
 				Reservation</button>
 			<button type="button" class="list-group-item">Edit Profile</button>
