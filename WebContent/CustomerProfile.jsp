@@ -12,12 +12,11 @@
 	<div class="bs-docs-sidebar"
 		style="margin-left: 20px; margin-top: 20px; width: 30%; display: inline-block"">
 		<div class="list-group">
-			<input type="submit" value="BookingHistory" onclick="form.action='BookingHistory';" class="list-group-item">
-			<button type="button" class="list-group-item">Current
-				Reservation</button>
-			<button type="button" class="list-group-item">Edit Profile</button>
-			<button type="button" class="list-group-item">Give Feedback</button>
-			<button type="button" class="list-group-item">Delete Profile</button>
+		<form method="post" action="BookingHistory">
+			<input type="submit"
+					class="btn btn-default" style="margin-top: 8px; margin-bottom: 8px"
+					name="submit" value="Booking History" />
+				</form>
 		</div>
 	</div>
 	<div class="panel panel-primary panels"

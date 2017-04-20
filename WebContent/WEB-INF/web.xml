@@ -52,4 +52,12 @@
    		<servlet-name>BookingHistoryServlet</servlet-name>
    		<url-pattern>/BookingHistory</url-pattern>
    </servlet-mapping>
+    <servlet>
+      <servlet-name>CheckUsersServlet</servlet-name>
+      <servlet-class>website.web.CheckUsersServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+   		<servlet-name>CheckUsersServlet</servlet-name>
+   		<url-pattern>/checkUsers</url-pattern>
+   </servlet-mapping>
 </web-app>

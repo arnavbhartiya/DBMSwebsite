@@ -43,7 +43,6 @@ public class JSONParser {
 				"jdbc:oracle:thin:hr/hr@oracle1.cise.ufl.edu:1521:orcl",
 				"arnav", "DBMSwebsite");
 		Statement stmt = conn.createStatement();
-		
 		for(int i=0;i<arr.length();i++){
 		obj=arr.getJSONObject(i);
 		int Contact_Id = (int) obj.get("CONTACT_ID");

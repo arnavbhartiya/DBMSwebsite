@@ -1,11 +1,12 @@
+<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>HOMAS</title>
+<title>Concierge</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -25,28 +26,23 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-static-top white "
-		data-spy="affix" role="navigation" style="margin:0px;">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>	
-			<a class="navbar-brand" href="/DBMSwebsite/index.jsp"><b><span
-					style="color: #9dd695">Concierge Home</b>
-		</div>
-
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="/DBMSwebsite/CustomerProfile.jsp"><c:out value="${username}" /></a>
-			<li><a href="mailto:arnavbhartiya@ufl.edu">Contact us</a>
-		</ul>
+	<jsp:include page="Header.jsp" />
+	<div style="margin-left:10%;margin-right: 10% ">
+	<div class="page-header">
+		<h1>
+			Hi ${username}! Your Bookings are:
+		</h1>
 	</div>
-	</nav>
-
-
+	<c:forEach var="childEntry" items="${bookingHistory}">
+	<div class="panel panel-info">
+  <div class="panel-body">
+  <b>Check In Date: </b>${childEntry[0]}<br>
+  <b>Check Out Date: </b>${childEntry[1]}<br>
+  <b>Rooms booked: </b>${childEntry[2]}<br>
+  <b>Payment: </b>${childEntry[3]}<br>
+  </div>
+ </div>
+	</c:forEach>
+	</div>
 </body>
 </html>

@@ -63,16 +63,24 @@ public class BookingConfirmationServlet extends HttpServlet {
 							+ "\', \'mm/dd/yyyy\') AND ROOM_TYPE=\'"
 							+ roomType
 							+ "\' AND ROWNUM<=" + numberOfRooms);
+			System.out.println("select * from rooms where BOOKED_TILL_DATE<TO_DATE(\'"
+							+ checkInDateString
+							+ "\', \'mm/dd/yyyy\') AND ROOM_TYPE=\'"
+							+ roomType
+							+ "\' AND ROWNUM<=" + numberOfRooms);
 			String roomsBooked = "";
 			while (findAvailableRooms.next()) {
 				String currentRoom = findAvailableRooms.getString("ROOMID");
-				roomsBooked = roomsBooked + currentRoom + '|';
+				roomsBooked = currentRoom;
 				stmt.executeQuery("UPDATE ROOMS SET BOOKED_FROM_DATE=TO_DATE(\'"
 						+ checkInDateString
 						+ "\',\'mm/dd/yyyy\'),BOOKED_TILL_DATE=TO_DATE(\'"
 						+ checkOutDateString
 						+ "\',\'mm/dd/yyyy\') WHERE ROOMID=" + currentRoom);
+				System.out.println("currentRoom"+currentRoom);
+
 			}
+			System.out.println("roomBooked"+roomsBooked);
 			stmt.executeQuery("INSERT INTO CONTACT_TABLE(CONTACT_ID,FIRSTNAME,LASTNAME,COUNTRY,ADDRESS,CITY,PHONE,EMAIL) VALUES(PAYMENT_SEQUENCE.NEXTVAL,\'"
 					+ firstName
 					+ "\',\'"

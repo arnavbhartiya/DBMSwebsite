@@ -31,21 +31,31 @@ public class SQLfiller {
 	 * @throws SQLException 
 	 */
 	public static void main(String[] args) throws IOException, ParseException, ClassNotFoundException, SQLException {
-		String[] card_type={"mastercard","visa","american express","discover", "dummy"};
-		int paymentId=1;
-		int username =100001101;
+		String[] username={"Elaina"," Delorse"," Nakesha"," Zenaida"," Nelly"," Buck"," Sherlyn"," Krissy"," Chante"," Tracie"," Rebbecca"," Marcia"," Lisette"," Tierra"," Velda"," Nanci"," Andra"," Ilda"," Daine"," Anastasia"," Billye"," Beryl"," Toya"," Lauren"," Norene"," Clay"," Nanette"," Ammie"," Renna"," Dimple"," Lenny"," Nedra"," Lavenia"," Juliane"," Cherryl"," Kathryn"," Naoma"," Lora"," Winford"," Aletha"," Kaley"," Tyrone"," Codi"," Viola"," Cassondra"," Debby"," Kylie"," Criselda"," Mireille"," Shasta"};
+		int paymentId=19951;
+		int user=0;
+		String checkInDateString="04/01/2017";
+		String checkOutDateString="04/30/2017";
 		int password =200001101;
+		int roomsBooked=940;
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection conn = DriverManager.getConnection(
 				"jdbc:oracle:thin:hr/hr@oracle1.cise.ufl.edu:1521:orcl",
 				"arnav", "DBMSwebsite");
 		Statement stmt = conn.createStatement();
-		for(int i=0;i<20000;i++){
-			String query = "INSERT INTO USERS(USERNAME,PASSWORD,CONTACT_ID,PAYMENT_ID) VALUES(\'"+(username++)+"\',\'"
-					+ (password++)
+		for(int i=0;i<50;i++){
+			String query ="INSERT INTO BOOKINGS(BOOKING_ID,USERNAME,CHECKIN,CHECKOUT,CONTACT_ID,PAYMENT_ID,ROOMS) VALUES(PAYMENT_SEQUENCE.NEXTVAL,\'"
+					+ username[user++]
+					+ "\',TO_DATE(\'"
+					+ checkInDateString
+					+ "\',\'mm/dd/yyyy\'),"
+					+ "TO_DATE(\'"
+					+ checkOutDateString
+					+ "\',\'mm/dd/yyyy\'),\'"
+					+ paymentId
 					+ "\',\'"
-					+ paymentId	
-					+ "\',\'" + (paymentId++) + "\')";
+					+ (paymentId++) + "\',\'" + (roomsBooked++) + "\')";
+			
 			System.out.println(query);
 			stmt.executeQuery(query);
 		}

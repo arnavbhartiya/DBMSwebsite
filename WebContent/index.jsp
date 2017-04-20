@@ -86,12 +86,12 @@
 					placeholder="Enter your Username" aria-describedby="basic-addon1"
 					name="username">
 				<p><b>Password</b></p>
-				<input type="text" class="form-control"
+				<input type="password" class="form-control"
 					placeholder="Enter your Password" aria-describedby="basic-addon1"
 					name="password"> <input type="submit"
 					class="btn btn-default" style="margin-top: 8px; margin-bottom: 8px"
 					name="submit" value="Sign In" /> <span class="error"
-					style="color: red">${error}</span>
+					style="color: red">${empError}</span>
 			</form>
 		</div>
 	</div>
